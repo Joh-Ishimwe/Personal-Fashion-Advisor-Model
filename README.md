@@ -1,7 +1,7 @@
 # Personal Fashion Advisor
 
 ## Overview
-This project aims to create a machine learning-based recommendation system that delivers personalized outfit and accessory suggestions by integrating user inputs. The primary focus of the project is classifying fashion items based on attributes such as material, color, price, season, and comfort to improve existing systems lacking personalized outfit recommendations.
+This a classification machine learning recommendation system that aims to delivers personalized outfit and accessory suggestions by integrating user inputs. The primary focus of the project is classifying fashion items based on attributes such as material, color, price, season, and comfort to improve existing systems lacking personalized outfit recommendations.
 
 ## Dataset
 The dataset is syntethic genereted data using pandas, due to unavailablity of existing non-generic dataset that algin the puporse of my model. It contains 10,000 samples with features like material type, color brightness, price, season, and comfort level, correlated with five fashion categories (Casual, Formal, Sportswear, Partywear, Traditional)
@@ -16,7 +16,7 @@ The dataset is syntethic genereted data using pandas, due to unavailablity of ex
         - Adam and SGD optimizers.
         - Varying learning rates.
         - Varying number of hidden layers.
-        - Varying of learning rate to learn it more.
+        
 ## Results
 | Training Instance | Optimizer Used | Regularizer Used | Epochs | Early Stopping | Number of Layers | Learning Rate | Accuracy | F1 Score | Recall | Precision |
 |-------------------|----------------|------------------|--------|----------------|------------------|---------------|----------|----------|--------|-----------|
@@ -31,10 +31,13 @@ The dataset is syntethic genereted data using pandas, due to unavailablity of ex
 ## Summary
 The best-performing model was **Instance 5, XGBoost with Hyperparameter Tuning**, achieving an accuracy and F1 score of 0.85. XGBoost outperformed both the classical ML algorithm (Logistic Regression) and the Neural Network models in terms of accuracy, F1 score, recall, and precision. Although the neural networks showed potential, further experimentation and hyperparameter optimization might be required for them to surpass XGBoost's performance on this particular dataset.
 
-
+## Link to video 
+https://vimeo.com/1059531045/bf40bdeade?share=copy
 
 ## Instructions
 1. Clone the repository.
-2. Install the required dependencies using `pip install -r requirements.txt`.
-3. Run the notebook `notebook.ipynb` to train the models and evaluate their performance.
-4. Load the best saved model from the `saved_models` directory using the provided instructions in the notebook.
+2. Install Dependencies
+Ensure you have all necessary libraries installed by running:
+ `pip install -r requirements.txt`
+3. Run the notebook `Summative_Intro_to_ml_[Josiane_Ishimwe_number]_assignment.ipynb` to train the models and evaluate their performance.
+4. Load the best saved model from the `saved_models`.

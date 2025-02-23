@@ -1,25 +1,37 @@
 # Personal Fashion Advisor
 
 ## Overview
-This project aims to create a machine learning-based recommendation system that delivers personalized outfit and accessory suggestions by integrating user inputs such as body type, event type, and preferred colours.
+This project aims to create a machine learning-based recommendation system that delivers personalized outfit and accessory suggestions by integrating user inputs. The primary focus of the project is classifying fashion items based on attributes such as material, color, price, season, and comfort to improve existing systems lacking personalized outfit recommendations.
 
 ## Dataset
-The dataset used in this project was synthetically generated to include features like body type, event type, preferred colours, and style category. The dataset contains 10,000 samples.
+The dataset is syntethic genereted data using pandas, due to unavailablity of existing non-generic dataset that algin the puporse of my model. It contains 10,000 samples with features like material type, color brightness, price, season, and comfort level, correlated with five fashion categories (Casual, Formal, Sportswear, Partywear, Traditional)
 
 ## Models Implemented
-1. **Classical ML Algorithms**: Logistic Regression, SVM, XGBoost
-2. **Neural Network**: Simple model without optimization and a model with optimization techniques.
-
+1. **Classical ML Algorithms**: 
+    - Logistic Regression with hyperparameter tuning using GridSearchCV.
+    - XGBoost with hyperparameter tuning using GridSearchCV.
+2. **Neural Network**: 
+    - A simple model without any optimization techniques.
+    - Models with various optimization techniques including:
+        - Adam and SGD optimizers.
+        - Varying learning rates.
+        - Varying number of hidden layers.
+        - Varying of learning rate to learn it more.
 ## Results
 | Training Instance | Optimizer Used | Regularizer Used | Epochs | Early Stopping | Number of Layers | Learning Rate | Accuracy | F1 Score | Recall | Precision |
 |-------------------|----------------|------------------|--------|----------------|------------------|---------------|----------|----------|--------|-----------|
-| Instance 1        | -              | -                | 50     | No             | 2                | 0.001         | 0.85     | 0.84     | 0.83   | 0.85      |
-| Instance 2        | Adam           | L2               | 100    | Yes            | 3                | 0.0001        | 0.88     | 0.87     | 0.86   | 0.88      |
-| Instance 3        | RMSprop        | L1               | 75     | No             | 4                | 0.0005        | 0.87     | 0.86     | 0.85   | 0.87      |
-| Instance 4        | Adam           | L2               | 50     | Yes            | 3                | 0.0001        | 0.89     | 0.88     | 0.87   | 0.89      |
+| Instance 1 (Basic NN) | -              | -                | 10     | No             | 2                | Default       | 0.79     | 0.79     | 0.79   | 0.79      |
+| Instance 2 (Optimized NN) | Adam           | -               | 100    | No            | 50               | 0.0001        | 0.81     | 0.81     | 0.81   | 0.81      |
+| Instance 3 (Optimized NN)| SGD            | -               | 100    | No             | 50               | 0.0005        | 0.82     | 0.82     | 0.82   | 0.82      |
+| Instance 4 (Logistic Regression) | liblinear/lbfgs | - | - | - | - | - | 0.83 | 0.83 | 0.83 | 0.83 |
+| Instance 5 (XGBoost) | - | - | - | - | - | - | **0.85** | **0.85** | **0.85** | **0.85** |
+
+
 
 ## Summary
-The best-performing model was Instance 4, which used the Adam optimizer, L2 regularization, 50 epochs, early stopping, 3 layers, and a learning rate of 0.0001. The neural network outperformed the classical ML algorithms in terms of accuracy and F1 score.
+The best-performing model was **Instance 5, XGBoost with Hyperparameter Tuning**, achieving an accuracy and F1 score of 0.85. XGBoost outperformed both the classical ML algorithm (Logistic Regression) and the Neural Network models in terms of accuracy, F1 score, recall, and precision. Although the neural networks showed potential, further experimentation and hyperparameter optimization might be required for them to surpass XGBoost's performance on this particular dataset.
+
+
 
 ## Instructions
 1. Clone the repository.

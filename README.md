@@ -1,43 +1,104 @@
 # Personal Fashion Advisor
 
 ## Overview
-This a classification machine learning recommendation system that aims to delivers personalized outfit and accessory suggestions by integrating user inputs. The primary focus of the project is classifying fashion items based on attributes such as material, color, price, season, and comfort to improve existing systems lacking personalized outfit recommendations.
+The **Personal Fashion Advisor** is a machine learning-based recommendation system designed to provide personalized outfit and accessory suggestions. By integrating user inputs and analyzing key attributes such as material, color, price, season, and comfort, the system aims to improve upon existing solutions that lack personalized recommendations. The project focuses on classifying fashion items into categories (e.g., casual, formal) to deliver tailored suggestions.
+
+---
 
 ## Dataset
-The dataset is syntethic genereted data using pandas, due to unavailablity of existing non-generic dataset that algin the puporse of my model. It contains 10,000 samples with features like material type, color brightness, price, season, and comfort level, correlated with five fashion categories (Casual, Formal, Sportswear, Partywear, Traditional)
+The dataset used in this project is **synthetically generated** using Python's `pandas` library. This approach was taken due to the unavailability of existing non-generic datasets that align with the project's goals. The dataset contains **10,000 samples** with the following features:
+
+- **`material_type`**: Type of material (e.g., cotton, wool, polyester).
+- **`color_brightness`**: Brightness of the color (normalized between 0 and 1).
+- **`price`**: Price of the item (in a specified range).
+- **`season`**: Seasonality of the item (e.g., summer, winter, all-season).
+- **`comfort`**: Comfort rating of the item (on a scale of 1 to 5).
+- **`category`**: Target variable representing the category of the item (e.g., casual, formal, sportswear, partywear, traditional).
+
+---
 
 ## Models Implemented
-1. **Classical ML Algorithms**: 
-    - Logistic Regression with hyperparameter tuning using GridSearchCV.
-    - XGBoost with hyperparameter tuning using GridSearchCV.
-2. **Neural Network**: 
-    - A simple model without any optimization techniques.
-    - Models with various optimization techniques including:
-        - Adam and SGD optimizers.
-        - Varying learning rates.
-        - Varying number of hidden layers.
-        
+
+### 1. **Classical Machine Learning Algorithms**
+- **Logistic Regression**:
+  - Tuned hyperparameters using `GridSearchCV`
+  - Evaluated using accuracy, precision, recall, and F1 score.
+
+- **SVM (Support Vector Machine)**:
+  - Tuned hyperparameters using `GridSearchCV`
+  - Evaluated using accuracy, precision, recall, and F1 score.
+
+- **XGBoost**:
+  - Tuned hyperparameters using `GridSearchCV`
+  - Evaluated using accuracy, precision, recall, and F1 score.
+
+---
+
+### 2. **Neural Networks**
+- **Basic Neural Network**:
+  - Simple feedforward architecture:
+    - Input layer: 32 neurons (ReLU activation).
+    - Hidden layer: 128 neurons (ReLU activation).
+    - Output layer: 5 neurons (softmax activation).
+  - Trained for 10 epochs with default settings.
+
+- **Optimized Neural Networks**:
+  - Techniques used:
+    - **Optimizers**: Adam and SGD.
+    - **Regularization**: L1 and L2 .
+    - **Learning Rates**: Varied ( 0.0001, 0.0005).
+    - **Early Stopping**: There was no to overfitting, i didn't use early stopping.
+    - **Hidden Layers**: Varied ( 50 layers).
+  - Evaluated using accuracy, precision, recall, and F1 score.
+
+## Results Table
+
 ## Results
-| Training Instance | Optimizer Used | Regularizer Used | Epochs | Early Stopping | Number of Layers | Learning Rate | Accuracy | F1 Score | Recall | Precision |
-|-------------------|----------------|------------------|--------|----------------|------------------|---------------|----------|----------|--------|-----------|
-| Instance 1 (Basic NN) | -              | -                | 10     | No             | 2                | Default       | 0.79     | 0.79     | 0.79   | 0.79      |
-| Instance 2 (Optimized NN) | Adam           | -               | 100    | No            | 50               | 0.0001        | 0.81     | 0.81     | 0.81   | 0.81      |
-| Instance 3 (Optimized NN)| SGD            | -               | 100    | No             | 50               | 0.0005        | 0.82     | 0.82     | 0.82   | 0.82      |
-| Instance 4 (Logistic Regression) | liblinear/lbfgs | - | - | - | - | - | 0.83 | 0.83 | 0.83 | 0.83 |
-| Instance 5 (XGBoost) | - | - | - | - | - | - | **0.85** | **0.85** | **0.85** | **0.85** |
 
+| Training Instance         | Optimizer Used | Regularizer Used | Epochs | Early Stopping | Number of Layers | Learning Rate | Accuracy | F1 Score | Recall | Precision |
+|---------------------------|----------------|------------------|--------|----------------|------------------|---------------|----------|----------|--------|-----------|
+| **Instance 1 (Basic NN)** | -              | -                | 10     | No             | 2                | Default       | 0.785    | 0.756    | 0.760  | 0.781     |
+| **Instance 2 (Optimized NN)** | Adam         | L1               | 50     | Yes            | 50               | 0.0001        | 0.810    | 0.800    | 0.804  | 0.800     |
+| **Instance 3 (Optimized NN)** | SGD          | L2               | 100    | Yes            | 50               | 0.0005        | 0.772    | 0.757    | 0.758  | 0.772     |
+| **Instance 4 (Logistic Regression)** | liblinear/lbfgs | - | - | - | - | - | 0.748 | 0.747 | 0.748 | 0.749 |
+| **Instance 5 (SVM)** | - | - | - | - | - | - | 0.8055 | 0.81 | 0.8055 | 0.81 |
+| **Instance 6 (XGBoost)** | - | - | - | - | - | - | **0.838** | **0.839** | **0.838** | **0.842** |
 
+---
 
-## Summary
-The best-performing model was **Instance 5, XGBoost with Hyperparameter Tuning**, achieving an accuracy and F1 score of 0.85. XGBoost outperformed both the classical ML algorithm (Logistic Regression) and the Neural Network models in terms of accuracy, F1 score, recall, and precision. Although the neural networks showed potential, further experimentation and hyperparameter optimization might be required for them to surpass XGBoost's performance on this particular dataset.
+### **Summary**
+- **Best Model**: XGBoost (Instance 6) achieves the highest accuracy (0.838), F1 score (0.839), recall (0.838), and precision (0.842).
+- **Second Best Model**: SVM (Instance 5) performs well with an accuracy of 0.8055.
+- **Worst Model**: Logistic Regression (Instance 4) has the lowest performance metrics.
+- **Neural Networks**: The optimized neural networks (Instances 2 and 3) perform better than the basic neural network (Instance 1), but XGBoost outperforms all of them.
 
-## Link to video 
-https://vimeo.com/1059531045/bf40bdeade?share=copy
+## Video 
+link:  (https://vimeo.com/1059531045/bf40bdeade?share=copy)
+
+---
 
 ## Instructions
-1. Clone the repository.
-2. Install Dependencies
-Ensure you have all necessary libraries installed by running:
- `pip install -r requirements.txt`
-3. Run the notebook `Summative_Intro_to_ml_[Josiane_Ishimwe_number]_assignment.ipynb` to train the models and evaluate their performance.
-4. Load the best saved model from the `saved_models`.
+1. **Clone the Repository**:
+   ```bash
+   git clone <repository-url>
+   cd <repository-folder>
+
+2. **Install Dependencies**:
+   ```bash
+   pip install -r requirements.txt
+
+3. **Run the Notebook**:
+   ```bash
+   jupyter notebook Summative_Intro_to_ml_[Josiane_lshimwe_number]_assignment.ipynb
+
+4. **Load Saved Models**
+The trained models are saved in the saved_models folder.
+
+5. **Explore the Dataset** saved fashion_df.csv
+
+7. Save and Load Models
+
+8. **Run Predictions**
+After loading a model, you can use it to make predictions on new data
+   ```bash
+   predictions = model.predict(X_test)
